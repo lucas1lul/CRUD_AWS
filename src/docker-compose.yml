@@ -3,17 +3,35 @@ version: "3.9"
 services:
   database:
     image: postgres
-    container_name: tutorial
+    container_name: aws_psql
     restart: always
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1q2w3e4r
+      POSTGRES_DB: aws_db
     volumes:
-      - pgdata:/data/postgres
+      - postgresvol:/var/lib/postgresql/data
+    networks:
+      - iff
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: lucas.corrado.albertao@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 123456
+    networks:
+      - iff
 
 volumes:
-  pgdata:
+  postgresvol:
     driver: local
+
+networks:
+  iff:
+    driver: bridge
