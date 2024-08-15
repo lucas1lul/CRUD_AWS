@@ -23,7 +23,7 @@ services:
     ports:
       - "8080:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: lucas.corrado.albertao@gmail.com
+      PGADMIN_DEFAULT_EMAIL: lucascorrado@hotmail.com
       PGADMIN_DEFAULT_PASSWORD: 123456
     networks:
       - iff
